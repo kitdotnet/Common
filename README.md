@@ -1,1 +1,1 @@
-# Common
+# Common## Common.Transformations### TransformDateTimeThis class provides static functions for moving a DateTime object from its current position to either the start or end of that same day, preserving the "kind" of date in the process.These are quite useful for data store CRUD operations and also ensuring that you're capturing all instances within a range measured by dates. Set the start of the range to StartOfDay and the end of the range to EndOfDay to ensure inclusive capture.
