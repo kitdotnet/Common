@@ -2,6 +2,8 @@
 
 This is a collection of libraries containing common, non-proprietary logic and utilities for use in many kinds of projects.
 
+---
+
 ## Common.Calendar
 
 ### Calendar
@@ -11,6 +13,8 @@ This class contains basic calendar manipulation functions, like counting of days
 ### UnitedStatesCalendar
 
 This class contains calculations for U.S. holidays.
+
+---
 
 ## Common.Data
 
@@ -26,11 +30,15 @@ This class is a factory for creating T-SQL "ORDER BY" clauses.
 
 This class is a fluent-like factory for creating T-SQL WHERE clauses.
 
+---
+
 ## Common.Maths
 
 ### Calculate
 
 This class contains common calculations, such as Age.
+
+---
 
 ## Common.Transformations
 
@@ -41,8 +49,6 @@ This class provides static functions for moving a DateTime object from its curre
 These are quite useful for data store CRUD operations and also ensuring that you're capturing all instances within a range measured by dates. Set the start of the range to StartOfDay and the end of the range to EndOfDay to ensure inclusive capture.
 
 See the unit tests for examples of usage.
-
----
 
 ### TransformRawText
 
@@ -77,13 +83,19 @@ Assert.Equal(expected, output);
 
 See the unit test project for additional examples of usage.
 
----
-
 ### TransformDollarsByFrequency
 
 This class converts dollar amounts to other dollar amounts based on frequency (e.g., weekly to monthly, annually to hourly, etc.)
 
 See the unit tests for examples of usage.
+
+### UnitedStatesPhoneNumberFormatter
+
+This class is a customer formatter for U.S. phone numbers.
+
+### SocialSecurityNumberFormatter
+
+This class formats Social Security Numbers.
 
 ---
 
