@@ -165,7 +165,7 @@ namespace Common.Maths.UnitTests
         public void GetFibonacciNumbers()
         {
             var fibs = Calculate.GetFibonacciNumbers(6);
-            var expected = new List<ulong>() {0L, 1L, 1L, 2L, 3L, 5L };
+            var expected = new List<ulong>() { 0L, 1L, 1L, 2L, 3L, 5L };
             Assert.True(expected.SequenceEqual(fibs));
 
             Assert.Empty(Calculate.GetFibonacciNumbers(0));
@@ -183,6 +183,34 @@ namespace Common.Maths.UnitTests
             Assert.Equal<ulong>(3, Calculate.GetFibonacciNumber(5));
             Assert.Equal<ulong>(5, Calculate.GetFibonacciNumber(6));
             Assert.Equal<ulong>(8, Calculate.GetFibonacciNumber(7));
+        }
+
+        [Theory]
+        [InlineData(0, 1)]
+        [InlineData(1, 1)]
+        [InlineData(2, 2)]
+        [InlineData(3, 6)]
+        [InlineData(4, 24)]
+        [InlineData(5, 120)]
+        public void Factorial(int number, ulong result)
+        {
+            Assert.Equal(result, Calculate.Factorial(number));
+        }
+
+        [Theory]
+        [InlineData(3,2,6)]
+        [InlineData(5, 5, 120)]
+        public void Permutations(int sizeOfSet, int sizeOfPermutations, ulong result)
+        {
+            Assert.Equal(result, Calculate.NumberOfPermutations(sizeOfSet, sizeOfPermutations));
+        }
+
+        [Theory]
+        [InlineData(3, 2, 3)]
+        [InlineData(4, 3, 4)]
+        public void Combinations(int sizeOfSet, int sizeOfCombinations, ulong result)
+        {
+            Assert.Equal(result, Calculate.NumberOfCombinations(sizeOfSet, sizeOfCombinations));
         }
     }
 }
