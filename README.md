@@ -69,7 +69,9 @@ string expected = $"<html><body><p>Hello {firstName}!</p></body></html>";
 // The dictionary keys are case insensitive.
 var dictionary = new Dictionary<string, string> { { "firstname", firstName } };
 
-var output = TransformRawText.Transform(template: text, keyValuePairs: dictionary, regularExpression: POUND_EXPRESSION, indexOfGroupWithKey: 1);
+var output = TransformRawText.Transform(template: text, keyValuePairs: dictionary,
+	regularExpression: POUND_EXPRESSION,
+	indexOfGroupWithKey: 1);
 
 Assert.Equal(expected, output);
 
@@ -95,12 +97,12 @@ For traditional formatting, use the "F" format (this is the default). For digits
 
 #### Examples
 ```
- string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0}", "1234567890"); // (123) 456-7890
- string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:F}", "1234567890"); // (123) 456-7890
- string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:N}", "1234567890"); // 1234567890
- string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:dots}", "1234567890"); // 123.456.7890
- string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:I}", "1234567890"); // +1 (123) 456-7890
-  string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:Idots}", "1234567890"); // +1.123.456.7890
+string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0}", "1234567890"); // (123) 456-7890
+string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:F}", "1234567890"); // (123) 456-7890
+string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:N}", "1234567890"); // 1234567890
+string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:dots}", "1234567890"); // 123.456.7890
+string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:I}", "1234567890"); // +1 (123) 456-7890
+string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:Idots}", "1234567890"); // +1.123.456.7890
 ```
 
 ### SocialSecurityNumberFormatter
@@ -111,10 +113,10 @@ For traditional formatting, use the "F" format (this is the default). For digits
 
 #### Examples
 ```
- string ssn = string.Format(new SocialSecurityNumberFormatter(), "{0}", "123456789"); // 123-45-6789
- string ssn = string.Format(new SocialSecurityNumberFormatter(), "{0:F}", "123456789"); // 123-45-6789
- string ssn = string.Format(new SocialSecurityNumberFormatter(), "{0:N}", "123456789"); // 123456789
- string ssn = string.Format(new SocialSecurityNumberFormatter(), "{0:dots}", "123456789"); // 123.45.6789
+string ssn = string.Format(new SocialSecurityNumberFormatter(), "{0}", "123456789"); // 123-45-6789
+string ssn = string.Format(new SocialSecurityNumberFormatter(), "{0:F}", "123456789"); // 123-45-6789
+string ssn = string.Format(new SocialSecurityNumberFormatter(), "{0:N}", "123456789"); // 123456789
+string ssn = string.Format(new SocialSecurityNumberFormatter(), "{0:dots}", "123456789"); // 123.45.6789
 ```
 
 ---
