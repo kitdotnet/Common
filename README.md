@@ -2,6 +2,16 @@
 
 This is a collection of libraries containing common, non-proprietary logic and utilities for use in many kinds of projects.
 
+## Common.Calendar
+
+### Calendar
+
+This class contains basic calendar manipulation functions, like counting of days and adjusting weekend holidays to either Friday or Monday.
+
+### UnitedStatesCalendar
+
+This class contains calculations for U.S. holidays.
+
 ## Common.Data
 
 ### SqlFor
