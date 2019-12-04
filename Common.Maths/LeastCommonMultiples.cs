@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Common.Maths
 {
-    /// <summary>
-    /// Utility class for common calculations.
-    /// </summary>
     public static partial class Calculate
     {
         /// <summary>

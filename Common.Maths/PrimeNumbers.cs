@@ -4,9 +4,6 @@ using System.Linq;
 
 namespace Common.Maths
 {
-    /// <summary>
-    /// Utility class for common calculations.
-    /// </summary>
     public static partial class Calculate
     {
         /// <summary>

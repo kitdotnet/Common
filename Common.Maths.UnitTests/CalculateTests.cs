@@ -160,5 +160,29 @@ namespace Common.Maths.UnitTests
             Assert.Equal<ulong>(0L, Calculate.Lcm(new ulong[] { 0L }));
             Assert.Equal<ulong>(0L, Calculate.Lcm(new ulong[] { 0L, 0L }));
         }
+
+        [Fact]
+        public void GetFibonacciNumbers()
+        {
+            var fibs = Calculate.GetFibonacciNumbers(6);
+            var expected = new List<ulong>() {0L, 1L, 1L, 2L, 3L, 5L };
+            Assert.True(expected.SequenceEqual(fibs));
+
+            Assert.Empty(Calculate.GetFibonacciNumbers(0));
+        }
+
+        [Fact]
+        public void GetFibonacciNumber()
+        {
+            Assert.Throws<ArgumentException>(() => Calculate.GetFibonacciNumber(0));
+
+            Assert.Equal<ulong>(0, Calculate.GetFibonacciNumber(1));
+            Assert.Equal<ulong>(1, Calculate.GetFibonacciNumber(2));
+            Assert.Equal<ulong>(1, Calculate.GetFibonacciNumber(3));
+            Assert.Equal<ulong>(2, Calculate.GetFibonacciNumber(4));
+            Assert.Equal<ulong>(3, Calculate.GetFibonacciNumber(5));
+            Assert.Equal<ulong>(5, Calculate.GetFibonacciNumber(6));
+            Assert.Equal<ulong>(8, Calculate.GetFibonacciNumber(7));
+        }
     }
 }
