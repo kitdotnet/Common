@@ -34,7 +34,7 @@ This class is a fluent-like factory for creating T-SQL `WHERE` clauses.
 
 ### Calculate
 
-This class contains common calculations, such as Age.
+This class contains common calculations, such as Age, IsPrime, etc.
 
 ---
 
