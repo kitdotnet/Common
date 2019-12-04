@@ -117,5 +117,48 @@ namespace Common.Maths.UnitTests
             actuals = Calculate.GetPrimeFactors(10);
             Assert.True(new List<ulong>() { 2L, 5L }.SequenceEqual(actuals));
         }
+
+        [Fact]
+        public void GcdTwoNumbers()
+        {
+            Assert.Equal<ulong>(5L, Calculate.Gcd(10L, 5L));
+            Assert.Equal<ulong>(12L, Calculate.Gcd(12L, 12L));
+            Assert.Equal<ulong>(6L, Calculate.Gcd(12L, 18L));
+        }
+
+        [Fact]
+        public void GcdArrayOfNumbers()
+        {
+            Assert.Equal<ulong>(5L, Calculate.Gcd(new ulong[] { 10L, 5L, 15L }));
+            Assert.Equal<ulong>(12L, Calculate.Gcd(new ulong[] { 12L, 12L, 36L }));
+            Assert.Equal<ulong>(3L, Calculate.Gcd(new ulong[] { 3L, 12L, 15L, 9L }));
+            Assert.Equal<ulong>(0L, Calculate.Gcd(new ulong[] { 0L, 0L }));
+        }
+
+        [Theory]
+        [InlineData(2, 4, 4)]
+        [InlineData(2, 9, 18)]
+        [InlineData(3, 12, 12)]
+        [InlineData(18, 24, 72)]
+        [InlineData(21, 6, 42)]
+        [InlineData(0, 6, 0)]
+        [InlineData(6, 0, 0)]
+        [InlineData(0, 0, 0)]
+        public void LcmTwoNumbers(ulong a, ulong b, ulong expected)
+        {
+            Assert.Equal(expected, Calculate.Lcm(a, b));
+        }
+
+        [Fact]
+        public void LcmArrayOfNumbers()
+        {
+            Assert.Equal<ulong>(8L, Calculate.Lcm(new ulong[] { 2L, 4L, 8L }));
+            Assert.Equal<ulong>(27L, Calculate.Lcm(new ulong[] { 3L, 9L, 27L }));
+            Assert.Equal<ulong>(260L, Calculate.Lcm(new ulong[] { 4L, 5L, 13L }));
+            Assert.Equal<ulong>(4L, Calculate.Lcm(new ulong[] { 2L, 4L }));
+            Assert.Equal<ulong>(2L, Calculate.Lcm(new ulong[] { 2L }));
+            Assert.Equal<ulong>(0L, Calculate.Lcm(new ulong[] { 0L }));
+            Assert.Equal<ulong>(0L, Calculate.Lcm(new ulong[] { 0L, 0L }));
+        }
     }
 }

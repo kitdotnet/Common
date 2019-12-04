@@ -7,22 +7,8 @@ namespace Common.Maths
     /// <summary>
     /// Utility class for common calculations.
     /// </summary>
-    public static class Calculate
+    public static partial class Calculate
     {
-        /// <summary>
-        /// Calculate an age from a <paramref name="birthDate"/>.
-        /// </summary>
-        /// <param name="birthDate">The date of birth.</param>
-        /// <param name="fromDate">The date from which to calculate.</param>
-        /// <returns>An integer representation of age.</returns>
-        public static int AgeInYears(DateTime birthDate, DateTime fromDate)
-        {
-            var age = fromDate.Year - birthDate.Year;
-            if (birthDate > fromDate.AddYears(-age)) age--;
-
-            return age;
-        }
-
         /// <summary>
         /// Determine if a number is prime.
         /// </summary>
@@ -76,9 +62,11 @@ namespace Common.Maths
         {
             IDictionary<ulong, int> results = new SortedDictionary<ulong, int>();
 
-            if (number == 1L) { return results; }
+            if (number <= 1L) { return results; }
 
             ulong[] primes = GetPrimes(number).ToArray();
+
+            if (primes.Length == 0) { return results; }
 
             ulong quotient = number;
             int primeIndex = 0;
