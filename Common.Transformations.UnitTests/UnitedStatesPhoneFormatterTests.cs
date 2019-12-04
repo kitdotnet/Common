@@ -19,6 +19,18 @@ namespace Common.Transformations.UnitTests
 
         [Theory]
         [InlineData("1234", "1234")]
+        [InlineData("5671234", "5671234")]
+        [InlineData("567.1234", "5671234")]
+        [InlineData("567-1234", "5671234")]
+        [InlineData("5.6.7-1&2p3j4kk", "5671234")]
+        [InlineData("1235671234", "1235671234")]
+        public void FormatPhoneNumber_NumbersOnly(string input, string expected)
+        {
+            Assert.Equal(expected, string.Format(new UnitedStatesPhoneFormatter(), "{0:N}", input));
+        }
+
+        [Theory]
+        [InlineData("1234", "1234")]
         [InlineData("5671234", "567.1234")]
         [InlineData("567.1234", "567.1234")]
         [InlineData("567-1234", "567.1234")]

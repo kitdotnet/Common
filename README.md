@@ -2,8 +2,6 @@
 
 This is a collection of libraries containing common, non-proprietary logic and utilities for use in many kinds of projects.
 
----
-
 ## Common.Calendar
 
 ### Calendar
@@ -12,7 +10,7 @@ This class contains basic calendar manipulation functions, like counting of days
 
 ### UnitedStatesCalendar
 
-This class contains calculations for U.S. holidays.
+This class inherits from `Calendar` and contains calculations for U.S. holidays (e.g., Easter, Thanksgiving, etc.).
 
 ---
 
@@ -20,15 +18,15 @@ This class contains calculations for U.S. holidays.
 
 ### SqlFor
 
-This class is a factory for constructing T-SQL FOR clauses for temporal table queries.
+This class is a factory for constructing T-SQL `FOR` clauses for temporal table queries.
 
 ### SqlOrderBy
 
-This class is a factory for creating T-SQL "ORDER BY" clauses.
+This class is a factory for creating T-SQL `ORDER BY` clauses.
 
 ### SqlWhere
 
-This class is a fluent-like factory for creating T-SQL WHERE clauses.
+This class is a fluent-like factory for creating T-SQL `WHERE` clauses.
 
 ---
 
@@ -44,9 +42,9 @@ This class contains common calculations, such as Age.
 
 ### TransformDateTime
 
-This class provides static functions for moving a DateTime object from its current position to either the start or end of that same day, preserving the "kind" of date in the process.
+This class provides static functions for moving a DateTime object from its current value to either the start or end of that same day, preserving the "kind" of date in the process.
 
-These are quite useful for data store CRUD operations and also ensuring that you're capturing all instances within a range measured by dates. Set the start of the range to StartOfDay and the end of the range to EndOfDay to ensure inclusive capture.
+These are quite useful for CRUD operations and also ensuring that you're capturing all instances within a range measured by dates (set the start of the range to StartOfDay and the end of the range to EndOfDay to ensure inclusive capture).
 
 See the unit tests for examples of usage.
 
@@ -58,9 +56,9 @@ Regular expressions are provided for data tags, curly braces, square brackets, a
 
 A couple of additional functions are provided for common string manipulation, including `ConvertNewLinesAndTabsToSpaces` and `CondenseSpacingAndTrim`.
 
-The `Transform` function allows for recursive processing, so it's possible to replace tags with text containing text other tags; it will process the text until no tags remain or until the `maxRecursiveIternations` has been met. This argument is intended to prevent infinite loops.
+The `Transform` function allows for recursive processing, so it's possible to replace tags with text containing text other tags; it will process the text until no tags remain or until the `maxRecursiveIterations` has been met. This argument is intended to prevent infinite loops.
 
-This class also contains a couple of common string manipulation functions, such as a function to remove newline characters and one to condense spacing in a string.
+This class also contains a couple of common string manipulation functions, such as a function to remove newline characters and one to condense spacing within a string.
 
 #### Example
 ```
@@ -87,15 +85,37 @@ See the unit test project for additional examples of usage.
 
 This class converts dollar amounts to other dollar amounts based on frequency (e.g., weekly to monthly, annually to hourly, etc.)
 
-See the unit tests for examples of usage.
+See the unit tests for examples of usage; every possible conversion is tested.
 
 ### UnitedStatesPhoneNumberFormatter
 
-This class is a customer formatter for U.S. phone numbers.
+This class is a custom formatter for U.S. phone numbers.
+
+For traditional formatting, use the "F" format (this is the default). For digits only, use "N." To include the U.S. country code, use "I." To use dots instead of dashses, use "dots," and use "IDots" for country code plus dots.
+
+#### Examples
+```
+ string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0}", "1234567890"); // (123) 456-7890
+ string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:F}", "1234567890"); // (123) 456-7890
+ string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:N}", "1234567890"); // 1234567890
+ string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:dots}", "1234567890"); // 123.456.7890
+ string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:I}", "1234567890"); // +1 (123) 456-7890
+  string phone = string.Format(new UnitedStatesPhoneFormatter(), "{0:Idots}", "1234567890"); // +1.123.456.7890
+```
 
 ### SocialSecurityNumberFormatter
 
-This class formats Social Security Numbers.
+This class is a custom formatter for Social Security Numbers.
+
+For traditional formatting, use the "F" format (this is the default). For digits only, use "N," and for dots instead of dashes, use "dots."
+
+#### Examples
+```
+ string ssn = string.Format(new SocialSecurityNumberFormatter(), "{0}", "123456789"); // 123-45-6789
+ string ssn = string.Format(new SocialSecurityNumberFormatter(), "{0:F}", "123456789"); // 123-45-6789
+ string ssn = string.Format(new SocialSecurityNumberFormatter(), "{0:N}", "123456789"); // 123456789
+ string ssn = string.Format(new SocialSecurityNumberFormatter(), "{0:dots}", "123456789"); // 123.45.6789
+```
 
 ---
 

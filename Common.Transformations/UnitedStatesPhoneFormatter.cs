@@ -13,7 +13,7 @@ namespace Common.Transformations
         /// using specified format and culture-specific formatting information.
         /// </summary>
         /// <param name="format">A format string containing formatting specifications.
-        /// Use 'N' for normal, 'dots' to use dots instead of dashes, 'I' to include country code,
+        /// Use 'N' for digits only, 'F' for formatted, 'dots' to use dots instead of dashes, 'I' to include country code,
         /// and 'Idots' for country code with dots.</param>
         /// <param name="arg">An object to format.</param>
         /// <param name="formatProvider">An object that supplies format information about the current instance.</param>
@@ -24,7 +24,7 @@ namespace Common.Transformations
             if (!Equals(formatProvider)) { return null; }
 
             // Set default format specifier             
-            if (string.IsNullOrWhiteSpace(format)) { format = "N"; }
+            if (string.IsNullOrWhiteSpace(format)) { format = "F"; }
 
             string numericString = new string(arg.ToString().ToCharArray().Where(c => char.IsDigit(c)).ToArray());
 
@@ -33,6 +33,18 @@ namespace Common.Transformations
             switch (format)
             {
                 case "N":
+                    if (numericString.Length <= 4
+                        || numericString.Length == 7
+                        || numericString.Length == 10)
+                    {
+                        result = numericString;
+                    }
+                    else
+                    {
+                        throw new FormatException(string.Format("'{0}' cannot be used to format {1}.", format, arg.ToString()));
+                    }
+                    break;
+                case "F":
                     if (numericString.Length <= 4)
                     {
                         result = numericString;
