@@ -59,7 +59,7 @@ namespace Common.Calendar
         /// </summary>
         /// <param name="start">The inclusive start date.</param>
         /// <param name="finish">The inclusive end date.</param>
-        /// <returns>An inclusive count of work days between two dates.</returns>
+        /// <returns>An inclusive count of week days between two dates.</returns>
         public static int CountInclusiveWeekDays(DateTime start, DateTime finish)
         {
             return GetInclusiveWeekDays(start, finish).Count();

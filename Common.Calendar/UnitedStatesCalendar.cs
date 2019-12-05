@@ -39,14 +39,14 @@ namespace Common.Calendar
 
         /// <summary>
         /// Gets an <see cref="IEnumerable{T}"/> of <see cref="DateTime"/> objects containing
-        /// an entry for each work day in the range, inclusively, and exluding any U.S. holiday
-        /// celebrated on a working day.
+        /// an entry for each week day in the range, inclusively, and exluding any U.S. holiday
+        /// celebrated on a week day.
         /// </summary>
         /// <param name="startDate">The inclusive start date.</param>
         /// <param name="endDate">The inclusive end date.</param>
         /// <returns>A collection of <see cref="DateTime"/> between the start and end dates, inclusively,
         /// where the day of the week is a weekday and not a celebrated holiday.</returns>
-        public static IEnumerable<DateTime> GetWorkDaysExcludingHolidays(DateTime startDate, DateTime endDate)
+        public static IEnumerable<DateTime> GetWeekDaysExcludingHolidays(DateTime startDate, DateTime endDate)
         {
             return Calendar.GetInclusiveWeekDays(startDate, endDate).Except(
                 GetHolidayDates(startDate, endDate).Where(h => Calendar.AdjustWeekendHolidayToCelebratedDay(h).DayOfWeek != DayOfWeek.Saturday
@@ -54,14 +54,14 @@ namespace Common.Calendar
         }
 
         /// <summary>
-        /// Counts the work days between two dates, inclusively, excluding celebrated holidays.
+        /// Counts the week days between two dates, inclusively, excluding celebrated holidays.
         /// </summary>
         /// <param name="startDate">The inclusive start date.</param>
         /// <param name="endDate">The inclusive end date.</param>
-        /// <returns>An inclusive count of work days between two dates, excluding celebrated holidays.</returns>
-        public static int CountWorkDaysExcludingHolidays(DateTime startDate, DateTime endDate)
+        /// <returns>An inclusive count of week days between two dates, excluding celebrated holidays.</returns>
+        public static int CountWeekDaysExcludingHolidays(DateTime startDate, DateTime endDate)
         {
-            return GetWorkDaysExcludingHolidays(startDate, endDate).Count();
+            return GetWeekDaysExcludingHolidays(startDate, endDate).Count();
         }
 
         /// <summary>

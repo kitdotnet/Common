@@ -109,7 +109,7 @@ namespace Common.Calendar.UnitTests
         }
 
         [Fact]
-        public void GetWorkDays_ResultIsInclusive()
+        public void GetWeekDays_ResultIsInclusive()
         {
             var days = UnitedStatesCalendar.GetInclusiveWeekDays(new DateTime(2020, 1, 1), new DateTime(2020, 1, 5));
             Assert.Equal(3, days.Count());
@@ -117,7 +117,7 @@ namespace Common.Calendar.UnitTests
         }
 
         [Fact]
-        public void CountWorkDays_ResultIsInclusive()
+        public void CountWeekDays_ResultIsInclusive()
         {
             var count = UnitedStatesCalendar.CountInclusiveWeekDays(new DateTime(2020, 1, 1), new DateTime(2020, 1, 5));
             Assert.Equal(3, count);
@@ -132,17 +132,17 @@ namespace Common.Calendar.UnitTests
         }
 
         [Fact]
-        public void GetWorkDaysExcludingHolidays_ResultIsInclusive()
+        public void GetWeekDaysExcludingHolidays_ResultIsInclusive()
         {
-            var days = UnitedStatesCalendar.GetWorkDaysExcludingHolidays(new DateTime(2020, 1, 1), new DateTime(2020, 1, 5));
+            var days = UnitedStatesCalendar.GetWeekDaysExcludingHolidays(new DateTime(2020, 1, 1), new DateTime(2020, 1, 5));
             Assert.Equal(2, days.Count());
             days.ToList().ForEach(d => testOutputHelper.WriteLine(d.ToString("yyyy-MM-dd HH:mm:ss:ffff") + $"\t{d.DayOfWeek.ToString()}"));
         }
 
         [Fact]
-        public void CountWorkDaysExcludingHolidays_ResultIsInclusive()
+        public void CountWeekDaysExcludingHolidays_ResultIsInclusive()
         {
-            var count = UnitedStatesCalendar.CountWorkDaysExcludingHolidays(new DateTime(2020, 1, 1), new DateTime(2020, 1, 5));
+            var count = UnitedStatesCalendar.CountWeekDaysExcludingHolidays(new DateTime(2020, 1, 1), new DateTime(2020, 1, 5));
             Assert.Equal(2, count);
         }
     }
