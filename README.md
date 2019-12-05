@@ -48,6 +48,12 @@ This class represents the liklihood of an event and contains static functions fo
 
 This class calculates the maths related to earned value management and a task estimator.
 
+### DecisionAnalysis
+
+These classes faciliate a decision tree used to evaluate the monetary value of one or more decisions over others.
+
+See the unit tests for examples of usage.
+
 ---
 
 ## Common.Transformations
