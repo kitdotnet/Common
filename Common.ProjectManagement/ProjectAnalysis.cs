@@ -214,6 +214,28 @@ namespace Common.ProjectManagement
         public decimal ToCompletePerformanceIndexEac => (BudgetAtCompletion - EarnedValue) / (EstimateAtCompletion - ActualCost);
 
         /// <summary>
+        /// Estimate the cost of a task or project.
+        /// </summary>
+        /// <param name="optimistic">An optimistic estimate.</param>
+        /// <param name="pessimistic">A pessimistic estimate.</param>
+        /// <param name="mostLikely">The most likely estimate.</param>
+        /// <param name="costEstimateDistribution">The <see cref="CostEstimateDistribution"/>
+        /// used for the cost estimate calculation.</param>
+        /// <returns></returns>
+        public static decimal CostEstimate(decimal optimistic,
+            decimal pessimistic,
+            decimal mostLikely,
+            CostEstimateDistribution costEstimateDistribution = CostEstimateDistribution.Triangular)
+        {
+            return costEstimateDistribution switch
+            {
+                CostEstimateDistribution.Beta => (optimistic + mostLikely + pessimistic) / 3,
+                CostEstimateDistribution.Triangular => (optimistic + (4 * mostLikely) + pessimistic) / 6,
+                _ => throw new ArgumentException($"Unknown cost estimate distribution: {costEstimateDistribution.ToString()}"),
+            };
+        }
+
+        /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
