@@ -35,21 +35,13 @@ namespace Common.Transformations
 
             string result = numericString;
 
-            switch (format)
+            result = format switch
             {
-                case "N":
-                    result = numericString;
-                    break;
-                case "F":
-                    result = $"{numericString.Substring(0,3)}-{numericString.Substring(3,2)}-{numericString.Substring(5)}";
-                    break;
-                case "dots":
-                    result = $"{numericString.Substring(0, 3)}.{numericString.Substring(3, 2)}.{numericString.Substring(5)}";
-                    break;
-                default:
-                    throw new FormatException(string.Format("The {0} format specifier is invalid.", format));
-            }
-
+                "N" => numericString,
+                "F" => $"{numericString.Substring(0, 3)}-{numericString.Substring(3, 2)}-{numericString.Substring(5)}",
+                "dots" => $"{numericString.Substring(0, 3)}.{numericString.Substring(3, 2)}.{numericString.Substring(5)}",
+                _ => throw new FormatException(string.Format("The {0} format specifier is invalid.", format)),
+            };
             return result;
         }
 

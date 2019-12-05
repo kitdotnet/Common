@@ -50,7 +50,7 @@ namespace Common.Validators
         /// Unused Areas.
         /// </summary>
         /// <seealso cref="https://www.ssa.gov/employer/stateweb.htm"/>
-        private static ReadOnlyCollection<(ushort low, ushort high)> unusedAreas =
+        private static readonly ReadOnlyCollection<(ushort low, ushort high)> unusedAreas =
             new ReadOnlyCollection<(ushort, ushort)>(new List<(ushort, ushort)> {
                 (237,246),
                 (587,679),
