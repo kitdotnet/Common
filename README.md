@@ -36,6 +36,10 @@ This class is a fluent-like factory for creating T-SQL `WHERE` clauses.
 
 This class contains common calculations, such as Age, IsPrime, etc.
 
+### Probability
+
+This class represents the liklihood of an event and contains static functions for independent, mutually exclusive, non-mutually exclusive, and conditional probabilities.
+
 ---
 
 ## Common.Transformations
