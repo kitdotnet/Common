@@ -44,13 +44,9 @@ This class represents the liklihood of an event and contains static functions fo
 
 ## Common.ProjectManagement
 
-### Calculate
-
-This class contains a project cost estimator.
-
 ### ProjectAnalysis
 
-This class calculates the maths related to earned value management.
+This class calculates the maths related to earned value management and a task estimator.
 
 ---
 
