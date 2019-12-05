@@ -74,7 +74,7 @@ Regular expressions are provided for data tags, curly braces, square brackets, a
 
 A couple of additional functions are provided for common string manipulation, including `ConvertNewLinesAndTabsToSpaces` and `CondenseSpacingAndTrim`.
 
-The `Transform` function allows for recursive processing, so it's possible to replace tags with text containing text other tags; it will process the text until no tags remain or until the `maxRecursiveIterations` has been met. This argument is intended to prevent infinite loops.
+The `Transform` function allows for recursive processing, so it's possible to replace tags with text containing other tags; it will process the text until no tags remain or until the `maxRecursiveIterations` has been met. This argument is intended to prevent infinite loops.
 
 This class also contains a couple of common string manipulation functions, such as a function to remove newline characters and one to condense spacing within a string.
 
@@ -87,7 +87,8 @@ string expected = $"<html><body><p>Hello {firstName}!</p></body></html>";
 // The dictionary keys are case insensitive.
 var dictionary = new Dictionary<string, string> { { "firstname", firstName } };
 
-var output = TransformRawText.Transform(template: text, keyValuePairs: dictionary,
+var output = TransformRawText.Transform(template: text,
+	keyValuePairs: dictionary,
 	regularExpression: POUND_EXPRESSION,
 	indexOfGroupWithKey: 1);
 
@@ -157,3 +158,12 @@ Some relevant references:
 
 [Microsoft](https://blogs.msdn.microsoft.com/testing123/2009/02/06/email-address-test-cases/)
 
+### SocialSecurityNumber
+
+This class validates a Social Security Number. The `IsValidStructure` function validates the structure of the SSN and the `IsValid` function validates that the SSN is valid.
+
+[ssa.gov](https://www.ssa.gov/employer/stateweb.htm)
+
+### UnitedStatesPhoneNumber
+
+The `IsValidStructure` in this class validates a 10 or 11 digit U.S. phone number. 
