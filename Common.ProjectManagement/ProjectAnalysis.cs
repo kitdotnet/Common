@@ -2,7 +2,9 @@
 
 namespace Common.ProjectManagement
 {
-    // Represents the mathematics for project analysis.
+    /// <summary>
+    /// Represents the mathematics for project analysis.
+    /// </summary>
     public class ProjectAnalysis : IEquatable<ProjectAnalysis>
     {
         /// <summary>
