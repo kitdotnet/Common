@@ -42,30 +42,6 @@ This class represents the liklihood of an event and contains static functions fo
 
 ---
 
-## Common.ProjectManagement
-
-### ProjectAnalysis
-
-This class calculates the maths related to earned value management and a task estimator.
-
-### DecisionAnalysis
-
-These classes faciliate a decision tree used to evaluate the monetary value of one or more decisions over others.
-
-See the unit tests for examples of usage.
-
-### PrecedenceDiagram
-
-This collection of classes represents a simple precedence diagram that will calculate the duration of a project (a collection of activities)
-and discover the critical path. Logical relationships between activities and both lead and lag logic are provided.
-
-There is no consideration for resources and consequently, nothing like resource leveling. Maybe at some point in the future.
-
-The four logical relationship types (Finish-to-Start (FS), Finish-to-Finish (FF), Start-to-Start (SS), and Start-to-Finish (SF)) are all tested
-within the relevant unit test project; take a look at those tests for examples of how to use these classes.
-
----
-
 ## Common.Transformations
 
 ### TransformDateTime
