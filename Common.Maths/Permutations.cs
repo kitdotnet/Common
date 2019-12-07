@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Common.Maths
+﻿namespace Common.Maths
 {
     public static partial class Calculate
     {

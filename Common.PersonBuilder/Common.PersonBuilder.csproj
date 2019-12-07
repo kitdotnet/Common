@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resources\female-names.txt" />
+    <None Remove="Resources\male-names.txt" />
+    <None Remove="Resources\surnames.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\female-names.txt" />
+    <EmbeddedResource Include="Resources\male-names.txt" />
+    <EmbeddedResource Include="Resources\surnames.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Transformations\Common.Transformations.csproj" />
+  </ItemGroup>
+</Project>

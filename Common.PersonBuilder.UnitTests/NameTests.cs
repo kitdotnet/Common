@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace Common.PersonBuilder.UnitTests
+{
+    public class NameTests
+    {
+        [Fact]
+        public void WithName_Explicit()
+        {
+            Person person = new PersonBuilder()
+                .WithName(new PersonName(firstName: "Mike", lastName: "Michaels"));
+
+            Assert.Equal("Mike", person.Name.FirstName);
+            Assert.Equal("Michaels", person.Name.LastName);
+            Assert.Null(person.Name.MiddleName);
+            Assert.Null(person.Name.MiddleInitial);
+            Assert.Null(person.Name.Suffix);
+        }
+
+        [Fact]
+        public void WithName_Gender()
+        {
+            Person person = new PersonBuilder()
+                .WithName(Gender.Male);
+
+            Assert.NotNull(person.Name.FirstName);
+            Assert.NotNull(person.Name.LastName);
+            Assert.NotNull(person.Name.MiddleName);
+            Assert.NotNull(person.Name.MiddleInitial);
+            Assert.Null(person.Name.Suffix);
+        }
+
+        [Fact]
+        public void WithName_GenderOther()
+        {
+            Person person = new PersonBuilder()
+                .WithName(Gender.Other);
+
+            Assert.NotNull(person.Name.FirstName);
+            Assert.NotNull(person.Name.LastName);
+            Assert.NotNull(person.Name.MiddleName);
+            Assert.NotNull(person.Name.MiddleInitial);
+            Assert.Null(person.Name.Suffix);
+        }
+
+        [Fact]
+        public void WithName_ExcludeMiddle()
+        {
+            Person person = new PersonBuilder()
+                .WithName(Gender.Female, false);
+
+            Assert.NotNull(person.Name.FirstName);
+            Assert.NotNull(person.Name.LastName);
+            Assert.Null(person.Name.MiddleName);
+            Assert.Null(person.Name.MiddleInitial);
+            Assert.Null(person.Name.Suffix);
+        }
+    }
+}
