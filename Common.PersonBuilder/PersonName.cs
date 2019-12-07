@@ -6,7 +6,7 @@ namespace Common.PersonBuilder
     /// <summary>
     /// Represents a person's name.
     /// </summary>
-    public struct PersonName : IEquatable<PersonName>
+    public readonly struct PersonName : IEquatable<PersonName>
     {
         /// <summary>
         /// Creates a new instance of the <see cref="PersonName"/> struct.

@@ -21,6 +21,9 @@ namespace Common.PersonBuilder
 
         protected readonly static Random random = new Random(DateTime.Now.Millisecond);
 
+        /// <summary>
+        /// Static constructor to load up embedded resources.
+        /// </summary>
         static PersonBuilder()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -64,6 +67,15 @@ namespace Common.PersonBuilder
             maleNameCount = maleNames.Count;
             femaleNameCount = femaleNames.Count;
             surnameCount = surnames.Count;
+        }
+
+        /// <summary>
+        /// Construct the person object given identified criteria.
+        /// </summary>
+        /// <returns>An instance of <see cref="Person"/>.</returns>
+        public Person Build()
+        {
+            return person;
         }
     }
 }

@@ -14,13 +14,13 @@ namespace Common.PersonBuilder
             person = new Person();
         }
 
-        public Person WithName(PersonName personName)
+        public PersonBuilder WithName(PersonName personName)
         {
             person.Name = personName;
-            return person;
+            return this;
         }
 
-        public Person WithName(string firstName,
+        public PersonBuilder WithName(string firstName,
             string lastName,
             string middleName = default,
             string suffix = default)
@@ -29,10 +29,10 @@ namespace Common.PersonBuilder
                 lastName: lastName,
                 middleName: middleName,
                 suffix: suffix);
-            return person;
+            return this;
         }
 
-        public Person WithName(Gender gender, bool includeMiddleName = true)
+        public PersonBuilder WithName(Gender gender = Gender.Other, bool includeMiddleName = false)
         {
             if (gender == Gender.Other)
             {
