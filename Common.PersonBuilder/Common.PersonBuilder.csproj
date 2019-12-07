@@ -14,6 +14,7 @@
     <EmbeddedResource Include="Resources\surnames.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common.Maths\Common.Maths.csproj" />
     <ProjectReference Include="..\Common.Transformations\Common.Transformations.csproj" />
   </ItemGroup>
 </Project>

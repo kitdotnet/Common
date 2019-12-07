@@ -56,5 +56,28 @@ namespace Common.PersonBuilder.UnitTests
                 .WithAge(24)
                 .Build();
         }
+
+        [Fact]
+        public void SettingAge_SetsDateOfBirth()
+        {
+            var person = new PersonBuilder()
+                .WithName(Gender.Male)
+                .WithAge(24)
+                .Build();
+            Assert.NotNull(person.DateOfBirth);
+            Assert.Equal<int>(person.Age, Maths.Calculate.AgeInYears(person.DateOfBirth.Value, DateTime.Now));
+        }
+
+        [Fact]
+        public void SettingDateOfBirth_SetsAge()
+        {
+            DateTime dateOfBirth = new DateTime(1980, 5, 19);
+            var person = new PersonBuilder()
+                .WithName(Gender.Male)
+                .WithDateOfBirth(dateOfBirth)
+                .Build();
+            Assert.NotNull(person.DateOfBirth);
+            Assert.Equal<int>(person.Age, Maths.Calculate.AgeInYears(person.DateOfBirth.Value, DateTime.Now));
+        }
     }
 }

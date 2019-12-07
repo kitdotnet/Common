@@ -11,5 +11,11 @@ namespace Common.PersonBuilder
             person.Age = age;
             return this;
         }
+
+        public PersonBuilder WithDateOfBirth(DateTime dateOfBirth)
+        {
+            person.DateOfBirth = dateOfBirth;
+            return this;
+        }
     }
 }
