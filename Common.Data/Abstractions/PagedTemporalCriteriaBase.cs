@@ -57,6 +57,5 @@ namespace Common.Data.Abstractions
                 return NumberPerPage * (PageNumber - 1);
             }
         }
-
     }
 }

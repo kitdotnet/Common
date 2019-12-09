@@ -1,15 +1,12 @@
 ﻿using System.Linq;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace Common.Validators.UnitTests
 {
     public class SocialSecurityNumberTests
     {
-        private readonly ITestOutputHelper testOutputHelper;
-        public SocialSecurityNumberTests(ITestOutputHelper testOutputHelper)
+        public SocialSecurityNumberTests()
         {
-            this.testOutputHelper = testOutputHelper;
         }
 
         [Theory]

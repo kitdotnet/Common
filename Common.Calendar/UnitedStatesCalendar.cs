@@ -126,7 +126,7 @@ namespace Common.Calendar
         /// </summary>
         /// <param name="year">The year for which to calculate Easter Sunday.</param>
         /// <returns>Easter Sunday for the specified year.</returns>
-        /// <remarks>Adapted from: http://www.codeproject.com/KB/datetime/christianholidays.aspx</remarks>
+        /// <seealso cref="http://www.codeproject.com/KB/datetime/christianholidays.aspx"/>
         public static DateTime EasterSunday(int year)
         {
             var g = year % 19;
@@ -165,7 +165,7 @@ namespace Common.Calendar
         /// Returns the date for U.S. Independence Day for the year provided.
         /// </summary>
         /// <param name="year"></param>
-        /// <returns></returns>
+        /// <returns>Independence day for the specified year.</returns>
         public static DateTime IndependenceDay(int year)
         {
             return new DateTime(year, 7, 4);
