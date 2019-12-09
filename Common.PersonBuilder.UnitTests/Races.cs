@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Common.PersonBuilder.UnitTests
 {
-    public class Races
+    public partial class PersonBuilderTests
     {
         [Fact]
         public void GetEthnicities()

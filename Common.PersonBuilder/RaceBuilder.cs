@@ -59,7 +59,7 @@ namespace Common.PersonBuilder
                 }
                 person.Races = new List<string>(racesAdded);
             }
-            
+
             return this;
         }
 
@@ -72,6 +72,31 @@ namespace Common.PersonBuilder
         {
             if (!Constants.Ethnicity.GetEthnicities().Contains(ethnicity)) { throw new ArgumentException($"Ethnicity '{ethnicity}' is not valid."); }
             person.Ethnicity = ethnicity;
+            return this;
+        }
+
+        /// <summary>
+        /// Gives this person the Hispanic ethnicity.
+        /// </summary>
+        /// <returns>A reference to this <see cref="PersonBuilder"/> instance.</returns>
+        public PersonBuilder AsHispanic()
+        {
+            person.Ethnicity = Constants.Ethnicity.HISPANIC;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets a random ethnicity to this person (including none at all as an option).
+        /// </summary>
+        /// <returns>A reference to this <see cref="PersonBuilder"/> instance.</returns>
+        public PersonBuilder WithRandomEthnicity()
+        {
+            person.Ethnicity = random.Next(0, 3) switch
+            {
+                0 => Constants.Ethnicity.HISPANIC,
+                1 => Constants.Ethnicity.NOT_HISPANIC,
+                _ => default
+            };
             return this;
         }
 

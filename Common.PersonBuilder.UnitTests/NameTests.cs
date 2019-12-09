@@ -6,7 +6,7 @@ using Xunit.Abstractions;
 
 namespace Common.PersonBuilder.UnitTests
 {
-    public class NameTests
+    public partial class PersonBuilderTests
     {
         [Fact]
         public void WithName_Explicit()
