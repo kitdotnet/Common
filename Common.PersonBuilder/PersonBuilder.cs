@@ -14,12 +14,24 @@ namespace Common.PersonBuilder
         protected readonly static HashSet<string> maleNames = new HashSet<string>();
         protected readonly static HashSet<string> femaleNames = new HashSet<string>();
         protected readonly static HashSet<string> surnames = new HashSet<string>();
+        protected readonly static HashSet<string> races = new HashSet<string>();
+        protected readonly static HashSet<string> ethnicities = new HashSet<string>();
 
         protected readonly static int maleNameCount = 0;
         protected readonly static int femaleNameCount = 0;
         protected readonly static int surnameCount = 0;
 
         protected readonly static Random random = new Random(DateTime.Now.Millisecond);
+
+        protected Person person;
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="PersonBuilder"/> class.
+        /// </summary>
+        public PersonBuilder()
+        {
+            person = new Person();
+        }
 
         /// <summary>
         /// Static constructor to load up embedded resources.
@@ -67,6 +79,19 @@ namespace Common.PersonBuilder
             maleNameCount = maleNames.Count;
             femaleNameCount = femaleNames.Count;
             surnameCount = surnames.Count;
+
+            races = new HashSet<string>() { 
+                Constants.Race.WHITE,
+                Constants.Race.BLACK,
+                Constants.Race.AMERICAN_INDIAN,
+                Constants.Race.HAWAIIAN,
+                Constants.Race.OTHER
+            };
+
+            ethnicities = new HashSet<string>() { 
+                Constants.Ethnicity.HISPANIC,
+                Constants.Ethnicity.NOT_HISPANIC
+            };
         }
 
         /// <summary>

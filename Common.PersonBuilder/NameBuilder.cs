@@ -1,42 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
 namespace Common.PersonBuilder
 {
     public partial class PersonBuilder
     {
-        protected Person person;
-
-        public PersonBuilder()
-        {
-            person = new Person();
-        }
-
+        /// <summary>
+        /// Add a name to this person.
+        /// </summary>
+        /// <param name="personName">The <see cref="PersonName"/> object to add.</param>
+        /// <returns>A reference to this <see cref="PersonBuilder"/> instance.</returns>
         public PersonBuilder WithName(PersonName personName)
         {
             person.Name = personName;
             return this;
         }
 
+        /// <summary>
+        /// Add a name to this person.
+        /// </summary>
+        /// <param name="firstName">The person's first name.</param>
+        /// <param name="lastName">The person's last name.</param>
+        /// <param name="middleName">The person's middle name.</param>
+        /// <param name="suffix">The suffix of the person's name.</param>
+        /// <returns>A reference to this <see cref="PersonBuilder"/> instance.</returns>
         public PersonBuilder WithName(string firstName,
             string lastName,
             string middleName = default,
             string suffix = default)
         {
-            person.Name = new PersonName(firstName: firstName,
+            return WithName(new PersonName(firstName: firstName,
                 lastName: lastName,
                 middleName: middleName,
-                suffix: suffix);
-            return this;
+                suffix: suffix));
         }
 
+        /// <summary>
+        /// Generates a random person name for this person.
+        /// </summary>
+        /// <param name="gender">The gender of the person.</param>
+        /// <param name="includeMiddleName">An indicator of whether a middle name should be generated.</param>
+        /// <returns>A reference to this <see cref="PersonBuilder"/> instance.</returns>
         public PersonBuilder WithName(Gender gender = Gender.Other, bool includeMiddleName = false)
         {
             if (gender == Gender.Other)
             {
                 gender = (Gender)random.Next(0, 2);
+            }
+
+            if (person.Gender != Gender.Other)
+            {
+                gender = person.Gender;
             }
 
             string surname = surnames.ElementAt(random.Next(0, surnameCount));

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Common.PersonBuilder
 {
@@ -21,12 +20,17 @@ namespace Common.PersonBuilder
         }
 
         /// <summary>
-        /// Gets the person's name.
+        /// Gets this person's name.
         /// </summary>
         public PersonName Name { get; internal set; }
 
         /// <summary>
-        /// Gets the person's age.
+        /// Gets this person's gender.
+        /// </summary>
+        public Gender Gender { get; internal set; } = Gender.Other;
+
+        /// <summary>
+        /// Gets this person's age.
         /// </summary>
         public Age Age
         {
@@ -42,17 +46,20 @@ namespace Common.PersonBuilder
             }
         }
 
+        /// <summary>
+        /// Gets this person's date of birth.
+        /// </summary>
         public DateTime? DateOfBirth
         {
             get
             {
                 return dateOfBirth;
             }
-            set
+            internal set
             {
                 if (value == default)
                 {
-                    age = -1;
+                    age = default;
                 }
                 else
                 {
@@ -61,5 +68,9 @@ namespace Common.PersonBuilder
                 dateOfBirth = value;
             }
         }
+
+        public IEnumerable<string> Races { get; internal set; } = new List<string>();
+
+        public string Ethnicity { get; internal set; }
     }
 }
