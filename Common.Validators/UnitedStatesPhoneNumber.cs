@@ -11,6 +11,7 @@ namespace Common.Validators
         /// Determines if the structure of the phone number is valid.
         /// </summary>
         /// <param name="phoneNumber">The phone number to validate.</param>
+        /// <param name="validCounts">An array of counts that are valid (e.g., 4, 7, 10).</param>
         /// <returns>An indicator of whether the structure of the phone number is valid.</returns>
         public static bool IsValidStructure(string phoneNumber, params int[] validCounts)
         {

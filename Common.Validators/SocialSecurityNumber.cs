@@ -47,14 +47,40 @@ namespace Common.Validators
         }
 
         /// <summary>
+        /// Gets a collection of unused areas.
+        /// </summary>
+        public static IEnumerable<int> UnusedAreas
+        {
+            get
+            {
+                List<int> results = new List<int>();
+                foreach ((ushort low, ushort high) in unusedAreas)
+                {
+                    results.AddRange(Enumerable.Range((int)low, (int)(high - low + 1)));
+                }
+                return results;
+            }
+        }
+
+        /// <summary>
+        /// Gets the collection of used areas.
+        /// </summary>
+        public static IEnumerable<int> UsedAreas
+        {
+            get
+            {
+                return Enumerable.Range(1, 999).Except(UnusedAreas);
+            }
+        }
+
+        /// <summary>
         /// Unused Areas.
         /// </summary>
         /// <seealso cref="https://www.ssa.gov/employer/stateweb.htm"/>
         private static readonly ReadOnlyCollection<(ushort low, ushort high)> unusedAreas =
             new ReadOnlyCollection<(ushort, ushort)>(new List<(ushort, ushort)> {
                 (237,246),
-                (587,679),
-                (681,699),
+                (587,699),
                 (750,999)
             });
     }

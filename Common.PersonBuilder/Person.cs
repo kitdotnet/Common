@@ -10,13 +10,14 @@ namespace Common.PersonBuilder
     {
         private DateTime? dateOfBirth = default;
         private Age age = -1;
-        private Random random = new Random();
+        private readonly Random random = new Random();
 
         /// <summary>
         /// Creates a new instance of the <see cref="Person"/> class.
         /// </summary>
         public Person()
         {
+            Races = new List<string>();
         }
 
         /// <summary>
@@ -69,8 +70,26 @@ namespace Common.PersonBuilder
             }
         }
 
+        /// <summary>
+        /// Gets a collection of races for this person.
+        /// </summary>
+        /// <seealso cref="PersonBuilder.Constants.Race"/>.
         public IEnumerable<string> Races { get; internal set; } = new List<string>();
 
+        /// <summary>
+        /// Gets the ethnicity of this person.
+        /// </summary>
+        /// <seealso cref="PersonBuilder.Constants.Ethnicity"/>.
         public string Ethnicity { get; internal set; }
+
+        /// <summary>
+        /// Gets the Social Security Number for this person.
+        /// </summary>
+        public string SocialSecurityNumber { get; internal set; }
+
+        /// <summary>
+        /// Gets the phone number for this person.
+        /// </summary>
+        public string PhoneNumber { get; internal set; }
     }
 }

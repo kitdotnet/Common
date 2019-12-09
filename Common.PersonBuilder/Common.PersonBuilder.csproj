@@ -16,5 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Common.Maths\Common.Maths.csproj" />
     <ProjectReference Include="..\Common.Transformations\Common.Transformations.csproj" />
+    <ProjectReference Include="..\Common.Validators\Common.Validators.csproj" />
   </ItemGroup>
 </Project>

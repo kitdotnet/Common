@@ -14,9 +14,6 @@ namespace Common.NameExtractor
             var maleNameStream = File.Create(@"c:\temp\male-names.txt");
             var femaleNameStream = File.Create(@"c:\temp\female-names.txt");
 
-            HashSet<string> maleNames = new HashSet<string>();
-            HashSet<string> femaleNames = new HashSet<string>();
-
             string[] lines = File.ReadAllLines("data\\yob2018.txt");
             foreach (string line in lines)
             {

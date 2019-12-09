@@ -1,9 +1,17 @@
-﻿using Xunit;
+﻿using System.Linq;
+using Xunit;
+using Xunit.Abstractions;
 
 namespace Common.Validators.UnitTests
 {
     public class SocialSecurityNumberTests
     {
+        private readonly ITestOutputHelper testOutputHelper;
+        public SocialSecurityNumberTests(ITestOutputHelper testOutputHelper)
+        {
+            this.testOutputHelper = testOutputHelper;
+        }
+
         [Theory]
         [InlineData("123-12-1233")]
         [InlineData("123121233")]
@@ -47,7 +55,6 @@ namespace Common.Validators.UnitTests
         [InlineData("236-01-0001")]
         [InlineData("247-01-0001")]
         [InlineData("586-01-0001")]
-        [InlineData("680-01-0001")]
         [InlineData("700-01-0001")]
         [InlineData("749-01-0001")]
         public void Ssn_Valid(string ssn)
@@ -72,6 +79,22 @@ namespace Common.Validators.UnitTests
         public void Ssn_Invalid(string ssn)
         {
             Assert.False(SocialSecurityNumber.IsValid(ssn));
+        }
+
+        [Fact]
+        public void Used_UnusedAreas()
+        {
+            var unusedAreas = SocialSecurityNumber.UnusedAreas;
+            var usedAreas = SocialSecurityNumber.UsedAreas;
+
+            Assert.Empty(usedAreas.Intersect(unusedAreas));
+
+            var allAreas = unusedAreas.Union(usedAreas);
+
+            foreach (int area in Enumerable.Range(1, 999)) 
+            {
+                Assert.Contains(area, allAreas);
+            }
         }
     }
 }

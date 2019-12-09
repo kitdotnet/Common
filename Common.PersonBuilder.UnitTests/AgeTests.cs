@@ -55,6 +55,7 @@ namespace Common.PersonBuilder.UnitTests
                 .WithName(Gender.Male)
                 .WithAge(24)
                 .Build();
+            Assert.Equal<int>(24, person.Age);
         }
 
         [Fact]
