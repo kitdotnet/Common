@@ -372,7 +372,7 @@ namespace Common.Data
                     whereClause.Append($" LIKE {modifiedRight}");
                     break;
                 case Comparison.CiLike:
-                    whereClause.Append($"LIKE {modifiedRight}");
+                    whereClause.Append($" LIKE {modifiedRight}");
                     break;
                 case Comparison.NotLike:
                     whereClause.Append($" NOT LIKE {modifiedRight}");
