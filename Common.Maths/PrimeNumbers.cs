@@ -52,7 +52,7 @@ namespace Common.Maths
         /// <returns>A <see cref="IDictionary{TKey, TValue}"/> wherein the keys are prime
         /// numbers and the values are the counts for those primes.</returns>
         /// <example>
-        /// If <paramref name="number"/> is 3, the result would be a dictionary with one
+        /// If <paramref name="number"/> is 9, the result would be a dictionary with one
         /// <see cref="KeyValuePair{TKey, TValue}"/> where the key is 3 and the value is 2.
         /// </example>
         public static IDictionary<ulong, int> GetPrimeFactorsDictionary(ulong number)
