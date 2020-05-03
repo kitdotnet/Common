@@ -359,7 +359,7 @@ namespace FindTextCli
             Console.WriteLine($"{Environment.NewLine}Same search, but case sensitive and searching subdirectories:");
             Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -i -r");
             Console.WriteLine($"{Environment.NewLine}Shows lines:");
-            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -i -r");
+            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -i -r -l");
             Console.WriteLine($"{Environment.NewLine}Shows lines with line numbers:");
             Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -i -r -ln");
             Console.WriteLine($"equivalent to:");
@@ -375,7 +375,7 @@ namespace FindTextCli
             Console.WriteLine($"{Environment.NewLine}Force your expression (to avoid full-line-capturing manipulation):");
             Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"First Name: [a-zA-Z]+\" -r -ln -f");
             Console.WriteLine($"{Environment.NewLine}Same query, but find only first names like 'James' (case insensitive):");
-            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"First Name\\s+?:\\s+?[a-zA-Z]+\" -e \"James\" -i -r -ln -f");
+            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"First Name\\s+?:\\s+?[a-zA-Z]+\" -e \"\\bJames\\b\" -i -r -ln -f");
         }
     }
 

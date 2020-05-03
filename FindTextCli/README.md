@@ -40,7 +40,7 @@ FindText -d /c/projects/code/ -e "\bassembly\b.+?$" -l -x cs
 
 The `^.+?` and `.+?$` are required to capture the entire line. When expressions are missing the `^` and `$`, the code will fill them in as needed.
 To avoid these manipulations of your expressions, either use the `^` and `$` (at the start and end respectively) in your expressions or use the `-f` to force your expression without manipulation; this will apply to all expressions.
-The only word of warning with `-f` is that you may not get entire lines back in your results. It may also wreak havoc if you have two or more expressions and are using the AND operator because the scope of the each successive expression check is constrained by the its predecessor (sorry, it was intended to do full-line matching).
+The only word of warning with `-f` is that you may not get entire lines back in your results. It may also wreak havoc if you have two or more expressions and are using the AND operator because the scope of the each successive expression check is constrained by its predecessor (sorry, it was intended to do full-line matching).
 See `ProcessFileWithAndOperator` for more info on how the AND operator works.
 
 The following are all different expressions that will yield different results because of the `-f` flag.
@@ -94,7 +94,7 @@ Same search, but case sensitive and searching subdirectories:
         FindText -d "/c/repos" -e "\bthe\b" -i -r
 
 Shows lines:
-        FindText -d "/c/repos" -e "\bthe\b" -i -r
+        FindText -d "/c/repos" -e "\bthe\b" -i -r -l
 
 Shows lines with line numbers:
         FindText -d "/c/repos" -e "\bthe\b" -i -r -ln
@@ -116,6 +116,6 @@ Force your expression (to avoid full-line-capturing manipulation):
         FindText -d "/c/repos" -e "First Name: [a-zA-Z]+" -r -ln -f
 
 Same query, but find only first names like 'James' (case insensitive):
-        FindText -d "/c/repos" -e "First Name\s+?:\s+?[a-zA-Z]+" -e "James" -i -r -ln -f
+        FindText -d "/c/repos" -e "First Name\s+?:\s+?[a-zA-Z]+" -e "\bJames\b" -i -r -ln -f
 
 ```
