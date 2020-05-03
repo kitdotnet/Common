@@ -184,3 +184,9 @@ This class validates a Social Security Number. The `IsValidStructure` function v
 ### UnitedStatesPhoneNumber
 
 The `IsValidStructure` in this class validates a 10 or 11 digit U.S. phone number. 
+
+---
+
+## FindTextCli
+
+This is a console application that searches for regular expression matches within then content of files in a directory; See the `/FindTextCli/README.md.`

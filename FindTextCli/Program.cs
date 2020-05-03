@@ -15,7 +15,8 @@ namespace FindTextCli
         static string directory = string.Empty;
         static bool caseInsensitive = false;
         static bool recursiveDirectorySearch = false;
-        static bool showLines = false, trimLines = false, showLineNumbers = false;
+        static bool showHelp = false, showLines = false, trimLines = false, showLineNumbers = false;
+        static bool forceExpression = false;
         static List<Regex> regexCollection = new List<Regex>();
         static RegexOptions regexOptions = RegexOptions.Multiline;
         static DirectoryInfo dirInfo;
@@ -28,6 +29,13 @@ namespace FindTextCli
             try
             {
                 HandleArguments(args);
+
+                if (showHelp)
+                {
+                    ShowHelp();
+                    Environment.Exit(0);
+                }
+
                 ValidateConfig();
                 Configure(out Func<string, List<string>> func);
 
@@ -53,6 +61,7 @@ namespace FindTextCli
                 {
                     Console.WriteLine("No files matched your extension configuration or no file were present to find.");
                 }
+
                 exitCode = 0;
             }
             catch (Exception exc)
@@ -217,6 +226,11 @@ namespace FindTextCli
 
                 switch (argument)
                 {
+                    case "--help":
+                    case "-h":
+                    case "?":
+                        showHelp = true;
+                        break;
                     case "--directory":
                     case "--dir":
                     case "-d":
@@ -226,7 +240,7 @@ namespace FindTextCli
                     case "--expression":
                     case "-e":
                         if (a > args.Length - 1) { throw new ArgumentException($"Expecting an expression after {args[a]}"); }
-                        expressions.Add(args[++a]);
+                        AddExpression(args[++a]);
                         break;
                     case "--insensitive":
                     case "-i":
@@ -261,9 +275,33 @@ namespace FindTextCli
                     case "-t":
                         trimLines = true;
                         break;
+                    case "--force":
+                    case "-f":
+                        forceExpression = true;
+                        break;
                     default:
                         throw new ArgumentException($"'{args[a]}' is an unknown argument.");
                 }
+            }
+        }
+
+        private static void AddExpression(string expression)
+        {
+            if (forceExpression || (expression.StartsWith("^") && expression.EndsWith("$")))
+            {
+                expressions.Add(expression);
+            }
+            else if (expression.StartsWith("^"))
+            {
+                AddExpression($"{expression}.+?$");
+            }
+            else if (expression.EndsWith("$"))
+            {
+                AddExpression($"^.+?{expression}");
+            }
+            else
+            {
+                AddExpression($"^.+?{expression}.+?$");
             }
         }
 
@@ -293,11 +331,13 @@ namespace FindTextCli
                 { "--expression | -e <expression>", "A regular expression by which to search."},
                 { "[--extension | -x <file extension>]", "Add file extension to extensions searched. When no extensions are provided, all files are searched." },
                 { "[--operator | -o <And | Or>]",  "Use 'And' to combine expressions together and use 'Or' if any expression match is desired."},
+                { "[--force | -f]","Force your expression to be accepted without manipulation."},
                 { "[--insensitive | -i]", "Make search case insensitive." },
                 { "[--recursive | -r]", "Make file searching include subdirectories." },
                 { "[--show-lines | -l]", "Show the matching lines." },
                 { "[--show-line-numbers | -ln]", "Show the line numbers for matching lines."},
-                { "[--trim | -t]", "Trim the matching lines in the output."}
+                { "[--trim | -t]", "Trim the matching lines in the output."},
+                { "[--help | -h | ?]","Show this help." }
             };
 
             string assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
@@ -313,25 +353,29 @@ namespace FindTextCli
 
             Console.WriteLine($"{Environment.NewLine}Examples:");
             Console.WriteLine($"{Environment.NewLine}Find any file containing the whole word 'the' - case-sensitive search:");
-            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"^.+?\\bthe\\b.+?$\"");
+            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\"");
             Console.WriteLine($"{Environment.NewLine}Same search, but case insensitive:");
-            Console.WriteLine($"\t{assemblyName} - \"/c/repos\" -e \"^.+?\\bthe\\b.+?$\" -i");
+            Console.WriteLine($"\t{assemblyName} - \"/c/repos\" -e \"\\bthe\\b\" -i");
             Console.WriteLine($"{Environment.NewLine}Same search, but case sensitive and searching subdirectories:");
-            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"^.+?\\bthe\\b.+?$\" -i -r");
+            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -i -r");
             Console.WriteLine($"{Environment.NewLine}Shows lines:");
-            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"^.+?\\bthe\\b.+?$\" -i -r");
+            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -i -r");
             Console.WriteLine($"{Environment.NewLine}Shows lines with line numbers:");
-            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"^.+?\\bthe\\b.+?$\" -i -r -ln");
+            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -i -r -ln");
             Console.WriteLine($"equivalent to:");
-            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"^.+?\\bthe\\b.+?$\" -i -r -ln -l");
+            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -i -r -ln -l");
             Console.WriteLine($"{Environment.NewLine}Trim the lines in the output:");
-            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"^.+?\\bthe\\b.+?$\" -i -r -ln -t");
+            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -i -r -ln -t");
             Console.WriteLine($"{Environment.NewLine}Find any file containing the whole word 'the' AND the whole word 'best' - case-sensitive search:");
-            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"^.+?\\bthe\\b.+?$\" -e \"^.+?\\bbest\\b.+?$\" -i -r -ln -t");
+            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -e \"\\bbest\\b\" -r -ln -t");
             Console.WriteLine($"equivalent to:");
-            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"^.+?\\bthe\\b.+?$\" -e \"^.+?\\bbest\\b.+?$\" -i -r -ln -t -o And");
+            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -e \"\\bbest\\b\" -r -ln -t -o And");
             Console.WriteLine($"{Environment.NewLine}Find any file containing the whole word 'the' OR the whole word 'best' - case-sensitive search:");
-            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"^.+?\\bthe\\b.+?$\" -e \"^.+?\\bbest\\b.+?$\" -i -r -ln -t -o Or");
+            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -e \"\\bbest\\b\" -r -ln -t -o Or");
+            Console.WriteLine($"{Environment.NewLine}Force your expression (to avoid full-line-capturing manipulation):");
+            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"First Name: [a-zA-Z]+\" -r -ln -f");
+            Console.WriteLine($"{Environment.NewLine}Same query, but find only first names like 'James' (case insensitive):");
+            Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"First Name\\s+?:\\s+?[a-zA-Z]+\" -e \"James\" -i -r -ln -f");
         }
     }
 
