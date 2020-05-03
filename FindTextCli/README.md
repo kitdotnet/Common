@@ -1,9 +1,9 @@
 # FindTextCli
 
-This is a console application that searches for regular expression matches within then content of files in a directory.
+This is a console application that searches for regular expression matches within the content of files in a directory.
 I use it all the time to search across multiple code repos for a bird's-eye-view of where a particular class or variable name appears.
 
-Note that in the examples below, linux-style paths are used. In a Windows command prompt, `/c/code/` is the replaced by `c:\code`.
+Note that linux-style paths are used in the examples below. At a Windows command prompt, `/c/code/` is the replaced by `c:\code`.
 
 ## Usage
 
@@ -13,7 +13,7 @@ To change this behavior to OR (i.e., expression1 OR expression2 OR expressionN),
 The expression is treated as case sensitive by default; use `-i` to make the search case insensitive. This will apply to all expressions provided.
 
 ```
-FindText -d /c/projects/code/ -e "^.+?\bassembly\b.+?$" -r -l -t -x cs
+FindText -d /c/projects/code/ -e "\bassembly\b" -r -l -t -x cs
 ```
 
 Add `-r` to make the directory search recursive.
@@ -39,7 +39,7 @@ FindText -d /c/projects/code/ -e "\bassembly\b.+?$" -l -x cs
 ```
 
 The `^.+?` and `.+?$` are required to capture the entire line. When expressions are missing the `^` and `$`, the code will fill them in as needed.
-To avoid these manipulations of your expressions, either use the `^` and `$` (at the start and end respeictively) in your expressions or use the `-f` to force your expression without manipulation; this will apply to all expressions.
+To avoid these manipulations of your expressions, either use the `^` and `$` (at the start and end respectively) in your expressions or use the `-f` to force your expression without manipulation; this will apply to all expressions.
 The only word of warning with `-f` is that you may not get entire lines back in your results. It may also wreak havoc if you have two or more expressions and are using the AND operator because the scope of the each successive expression check is constrained by the its predecessor (sorry, it was intended to do full-line matching).
 See `ProcessFileWithAndOperator` for more info on how the AND operator works.
 
@@ -57,7 +57,18 @@ FindText -d /c/projects/code/ -e "\bassembly\b.+?$" -l -x cs -f
 ### FindText --help
 
 ```
-FindText --directory | --dir | -d <directory> --expression | -e <expression> [--extension | -x <file extension>] [--operator | -o <And | Or>] [--force | -f] [--insensitive | -i] [--recursive | -r] [--show-lines | -l] [--show-line-numbers | -ln] [--trim | -t] [--help | -h | ?]
+FindText
+  --directory | --dir | -d <directory>
+  --expression | -e <expression>
+  [--extension | -x <file extension>]
+  [--operator | -o <And | Or>]
+  [--force | -f]
+  [--insensitive | -i]
+  [--recursive | -r]
+  [--show-lines | -l]
+  [--show-line-numbers | -ln]
+  [--trim | -t]
+  [--help | -h | ?]
 
 --directory | --dir | -d <directory>    The directory to search.
 --expression | -e <expression>          A regular expression by which to search.
