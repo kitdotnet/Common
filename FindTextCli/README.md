@@ -85,34 +85,34 @@ FindText
 Examples:
 
 Find any file containing the whole word 'the' - case-sensitive search:
-        FindText -d "/c/repos" -e "^.+?\bthe\b.+?$"
+        FindText -d "/c/repos" -e "\bthe\b"
 
 Same search, but case insensitive:
-        FindText - "/c/repos" -e "^.+?\bthe\b.+?$" -i
+        FindText - "/c/repos" -e "\bthe\b" -i
 
 Same search, but case sensitive and searching subdirectories:
-        FindText -d "/c/repos" -e "^.+?\bthe\b.+?$" -i -r
+        FindText -d "/c/repos" -e "\bthe\b" -i -r
 
 Shows lines:
-        FindText -d "/c/repos" -e "^.+?\bthe\b.+?$" -i -r
+        FindText -d "/c/repos" -e "\bthe\b" -i -r
 
 Shows lines with line numbers:
-        FindText -d "/c/repos" -e "^.+?\bthe\b.+?$" -i -r -ln
+        FindText -d "/c/repos" -e "\bthe\b" -i -r -ln
 equivalent to:
-        FindText -d "/c/repos" -e "^.+?\bthe\b.+?$" -i -r -ln -l
+        FindText -d "/c/repos" -e "\bthe\b" -i -r -ln -l
 
 Trim the lines in the output:
-        FindText -d "/c/repos" -e "^.+?\bthe\b.+?$" -i -r -ln -t
+        FindText -d "/c/repos" -e "\bthe\b" -i -r -ln -t
 
 Find any file containing the whole word 'the' AND the whole word 'best' - case-sensitive search:
-        FindText -d "/c/repos" -e "^.+?\bthe\b.+?$" -e "^.+?\bbest\b.+?$" -r -ln -t
+        FindText -d "/c/repos" -e "\bthe\b" -e "\bbest\b" -r -ln -t
 equivalent to:
-        FindText -d "/c/repos" -e "^.+?\bthe\b.+?$" -e "^.+?\bbest\b.+?$" -r -ln -t -o And
+        FindText -d "/c/repos" -e "\bthe\b" -e "\bbest\b" -r -ln -t -o And
 
 Find any file containing the whole word 'the' OR the whole word 'best' - case-sensitive search:
-        FindText -d "/c/repos" -e "^.+?\bthe\b.+?$" -e "^.+?\bbest\b.+?$" -r -ln -t -o Or
+        FindText -d "/c/repos" -e "\bthe\b" -e "\bbest\b" -r -ln -t -o Or
 
-Force your expression (to avoid full-line-capturing manipulation:
+Force your expression (to avoid full-line-capturing manipulation):
         FindText -d "/c/repos" -e "First Name: [a-zA-Z]+" -r -ln -f
 
 Same query, but find only first names like 'James' (case insensitive):
