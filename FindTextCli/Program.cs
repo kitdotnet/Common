@@ -356,7 +356,7 @@ namespace FindTextCli
             Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\"");
             Console.WriteLine($"{Environment.NewLine}Same search, but case insensitive:");
             Console.WriteLine($"\t{assemblyName} - \"/c/repos\" -e \"\\bthe\\b\" -i");
-            Console.WriteLine($"{Environment.NewLine}Same search, but case sensitive and searching subdirectories:");
+            Console.WriteLine($"{Environment.NewLine}Same search, but case insensitive and searching subdirectories:");
             Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -i -r");
             Console.WriteLine($"{Environment.NewLine}Shows lines:");
             Console.WriteLine($"\t{assemblyName} -d \"/c/repos\" -e \"\\bthe\\b\" -i -r -l");

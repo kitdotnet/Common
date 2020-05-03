@@ -90,7 +90,7 @@ Find any file containing the whole word 'the' - case-sensitive search:
 Same search, but case insensitive:
         FindText - "/c/repos" -e "\bthe\b" -i
 
-Same search, but case sensitive and searching subdirectories:
+Same search, but case insensitive and searching subdirectories:
         FindText -d "/c/repos" -e "\bthe\b" -i -r
 
 Shows lines:
